@@ -1,0 +1,5 @@
+{
+    "app_uri": "http://localhost:4200/",
+    "tokenHandler" : "token",
+    "clienteId": "763b033bea0e4a47b3958f36e8df5729"
+}
