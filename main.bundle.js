@@ -40,6 +40,7 @@ var routes = [
     { path: 'main', component: __WEBPACK_IMPORTED_MODULE_3__main_main_component__["a" /* MainComponent */] },
     { path: 'token', component: __WEBPACK_IMPORTED_MODULE_2__token_token_component__["a" /* TokenComponent */] },
     { path: '', redirectTo: '/main', pathMatch: 'full' },
+    { path: '**', redirectTo: '/main', pathMatch: 'full' },
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {
