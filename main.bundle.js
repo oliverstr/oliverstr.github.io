@@ -175,21 +175,23 @@ var _a;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__("../../../platform-browser/@angular/platform-browser.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_routing_module__ = __webpack_require__("../../../../../src/app/app-routing.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__main_main_component__ = __webpack_require__("../../../../../src/app/main/main.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__token_token_component__ = __webpack_require__("../../../../../src/app/token/token.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_authorization_service__ = __webpack_require__("../../../../../src/app/services/authorization.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_connection_service__ = __webpack_require__("../../../../../src/app/services/connection.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_common_http__ = __webpack_require__("../../../common/@angular/common/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_config__ = __webpack_require__("../../../../../src/app/app.config.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_routing_module__ = __webpack_require__("../../../../../src/app/app-routing.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__main_main_component__ = __webpack_require__("../../../../../src/app/main/main.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__token_token_component__ = __webpack_require__("../../../../../src/app/token/token.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_authorization_service__ = __webpack_require__("../../../../../src/app/services/authorization.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_connection_service__ = __webpack_require__("../../../../../src/app/services/connection.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_common_http__ = __webpack_require__("../../../common/@angular/common/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__app_config__ = __webpack_require__("../../../../../src/app/app.config.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -212,28 +214,29 @@ var AppModule = (function () {
 AppModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["M" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */],
-            __WEBPACK_IMPORTED_MODULE_4__main_main_component__["a" /* MainComponent */],
-            __WEBPACK_IMPORTED_MODULE_5__token_token_component__["a" /* TokenComponent */]
+            __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* AppComponent */],
+            __WEBPACK_IMPORTED_MODULE_5__main_main_component__["a" /* MainComponent */],
+            __WEBPACK_IMPORTED_MODULE_6__token_token_component__["a" /* TokenComponent */]
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_8__angular_common_http__["b" /* HttpClientModule */],
+            __WEBPACK_IMPORTED_MODULE_9__angular_common_http__["b" /* HttpClientModule */],
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-            __WEBPACK_IMPORTED_MODULE_3__app_routing_module__["a" /* AppRoutingModule */],
-            __WEBPACK_IMPORTED_MODULE_10__angular_http__["c" /* HttpModule */]
+            __WEBPACK_IMPORTED_MODULE_4__app_routing_module__["a" /* AppRoutingModule */],
+            __WEBPACK_IMPORTED_MODULE_11__angular_http__["c" /* HttpModule */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormsModule */]
         ],
         providers: [
-            __WEBPACK_IMPORTED_MODULE_6__services_authorization_service__["a" /* AuthorizationService */],
-            __WEBPACK_IMPORTED_MODULE_7__services_connection_service__["a" /* ConnectionService */],
-            __WEBPACK_IMPORTED_MODULE_9__app_config__["a" /* AppConfig */],
+            __WEBPACK_IMPORTED_MODULE_7__services_authorization_service__["a" /* AuthorizationService */],
+            __WEBPACK_IMPORTED_MODULE_8__services_connection_service__["a" /* ConnectionService */],
+            __WEBPACK_IMPORTED_MODULE_10__app_config__["a" /* AppConfig */],
             {
                 provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["d" /* APP_INITIALIZER */],
                 useFactory: initConfig,
-                deps: [__WEBPACK_IMPORTED_MODULE_9__app_config__["a" /* AppConfig */]],
+                deps: [__WEBPACK_IMPORTED_MODULE_10__app_config__["a" /* AppConfig */]],
                 multi: true
             },
         ],
-        bootstrap: [__WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */]]
+        bootstrap: [__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
 
@@ -244,7 +247,7 @@ AppModule = __decorate([
 /***/ "../../../../../src/app/main/main.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div class=\"instagram-signature\">#{{tag}}</div>\n  <div *ngIf=\"selectedMedia\" class=\"content-wrapper\">\n    <img [src]=\"selectedMedia.node.display_url\" alt=\"Imagem do instagram\" class=\"media-img\" [ngClass]=\"{'slit-in-vertical' : inAnimation, 'rotate-out-2-cw' : outAnimation}\">\n    <div *ngIf=\"selectedMedia.user\" class=\"caption\" [ngClass]=\"{'fade-in-right' : inAnimation}\">\n      <img src=\"{{selectedMedia.user.profile_pic_url}}\" alt=\"Profile Picture\">\n      <div>\n        <b>{{selectedMedia.user.username}}</b>\n        <br>\n        <small>{{selectedMedia.user.full_name}}</small>\n        <p>{{selectedMedia.node.edge_media_to_caption.edges[0].node.text}}</p>\n      </div>\n    </div>\n  </div>\n  <div class=\"venturus-signature\"></div>\n  <!-- <div class=\"settings\">\n    <a (click)=\"toggleSettings\">Configurações</a>\n    <div class=\"dropdown-settings\">\n      <form #f>\n        <input type=\"text\" [(ngModel)]=\"tag\" placeholder=\"Hashtag\">\n      </form>   \n    </div>\n  </div> -->\n</div>\n"
+module.exports = "<div class=\"container\">\n  <div class=\"instagram-signature\">#{{config.tag}}</div>\n  <div *ngIf=\"selectedMedia\" class=\"content-wrapper\">\n    <img [src]=\"selectedMedia.node.display_url\" alt=\"Imagem do instagram\" class=\"media-img\" [ngClass]=\"{'slit-in-vertical' : inAnimation, 'rotate-out-2-cw' : outAnimation}\">\n    <div *ngIf=\"selectedMedia.user\" class=\"caption\" [ngClass]=\"{'fade-in-right' : inAnimation}\">\n      <img src=\"{{selectedMedia.user.profile_pic_url}}\" alt=\"Profile Picture\">\n      <div>\n        <b>{{selectedMedia.user.username}}</b>\n        <br>\n        <small>{{selectedMedia.user.full_name}}</small>\n        <p>{{selectedMedia.node.edge_media_to_caption.edges[0].node.text}}</p>\n      </div>\n    </div>\n  </div>\n  <div class=\"venturus-signature\"></div>\n  <div class=\"settings\">\n    <a (click)=\"toggleSettings()\"><img src=\"assets/img/fa-cog.png\" alt=\"Config\" style=\"color: rgba(0,0,0,0.5)\"></a>\n    <div *ngIf=\"displaySettings\" class=\"dropdown-settings\">\n      <form #form=\"ngForm\" (ngSubmit)=\"setNewConfig()\">\n\n        <label>Hashtag</label>\n        <input type=\"text\" [(ngModel)]=\"newConfig.tag\" name=\"tag\" placeholder=\"Hashtag\" required>\n\n        <label>Duration seconds</label>\n        <input type=\"number\" [(ngModel)]=\"newConfig.durationSeconds\" name=\"duration\" placeholder=\"Duration time\" required>\n\n        <label>Refresh minutes</label>\n        <input type=\"number\" [(ngModel)]=\"newConfig.refreshMinutes\" name=\"refresh\" placeholder=\"Refresh time\" required>\n        \n        <button type=\"submit\" [disabled]=\"!form.form.valid\">Save</button>\n      </form>   \n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -276,15 +279,19 @@ var MainComponent = (function () {
         this._mediaIndex = 0;
         this.inAnimation = true;
         this.outAnimation = false;
-        this.tag = 'boracurtirvnt';
-        this.durationSeconds = 5;
-        this.refreshMinutes = 5;
+        this.config = {
+            mediaItemsInterval: undefined, switchMediaInteral: undefined
+        };
+        this.displaySettings = false;
     }
     MainComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.getMediaItems(this.tag);
-        setInterval(function () { _this.getMediaItems(_this.tag); }, (this.refreshMinutes * 60000));
-        setInterval(this.switchMedia.bind(this), (this.durationSeconds * 1000));
+        this.setConfig();
+        this.getMediaItems(this.config['tag']);
+        this.config.mediaItemsInterval = setInterval(function () {
+            _this.getMediaItems(_this.config['tag']);
+        }, (this.config['refreshMinutes'] * 60000));
+        this.config.switchMediaInteral = setInterval(this.switchMedia.bind(this), (this.config['durationSeconds'] * 1000));
     };
     MainComponent.prototype.checkAuthorization = function () {
         this._connection.getToken();
@@ -313,7 +320,7 @@ var MainComponent = (function () {
         setTimeout(function () {
             _this._mediaIndex = _this._mediaIndex === (_this._mediaItems.length - 1) ? 0 : _this._mediaIndex + 1;
             _this.selectedMedia = _this._mediaItems[_this._mediaIndex];
-        }, 450); // Wait for out transition complete to load other image
+        }, 500); // Wait for out transition complete to load other image
         setTimeout(function () {
             _this.animate('in');
         }, 500); // Wait for in transition complete to load other image
@@ -331,6 +338,31 @@ var MainComponent = (function () {
                 break;
             }
         }
+    };
+    MainComponent.prototype.setNewConfig = function () {
+        clearInterval(this.config.switchMediaInteral);
+        clearInterval(this.config.mediaItemsInterval);
+        localStorage['tag'] = this.newConfig.tag;
+        localStorage['durationSeconds'] = this.newConfig.durationSeconds;
+        localStorage['refreshMinutes'] = this.newConfig.refreshMinutes;
+        this.config = this.newConfig;
+        this.ngOnInit();
+        this.toggleSettings();
+    };
+    MainComponent.prototype.toggleSettings = function () {
+        var _this = this;
+        this.displaySettings = this.displaySettings ? false : true;
+        if (this.displaySettings) {
+            setTimeout(function () {
+                _this.displaySettings = false;
+            }, 10000);
+        }
+    };
+    MainComponent.prototype.setConfig = function () {
+        this.config['tag'] = localStorage['tag'] || 'boracurtirvnt';
+        this.config['durationSeconds'] = localStorage['durationSeconds'] || 5;
+        this.config['refreshMinutes'] = localStorage['refreshMinutes'] || 5;
+        this.newConfig = Object.assign({}, this.config);
     };
     return MainComponent;
 }());
@@ -439,7 +471,6 @@ var ConnectionService = (function () {
         return this._http.get(url, { headers: header, responseType: __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* ResponseContentType */].Text })
             .map(function (data) {
             var posts = JSON.parse(data['_body'].split('_sharedData = ')[1].split(';</script>')[0])['entry_data']['TagPage'][0]['graphql']['hashtag']['edge_hashtag_to_media']['edges'];
-            console.log(posts);
             posts.forEach(function (post) {
                 _this.getUserByPostCode(post['node']['shortcode']).subscribe(function (user) { return post['user'] = user; });
             });
