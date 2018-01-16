@@ -244,7 +244,7 @@ AppModule = __decorate([
 /***/ "../../../../../src/app/main/main.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div class=\"instagram-signature\">#{{tag}}</div>\n  <div *ngIf=\"selectedMedia\" class=\"content-wrapper\">\n    <img [src]=\"selectedMedia.display_src\" alt=\"Imagem do instagram\" class=\"media-img\" [ngClass]=\"{'slit-in-vertical' : inAnimation, 'rotate-out-2-cw' : outAnimation}\">\n    <div *ngIf=\"selectedMedia.user\" class=\"caption\" [ngClass]=\"{'fade-in-right' : inAnimation}\">\n      <img src=\"{{selectedMedia.user.profile_pic_url}}\" alt=\"Profile Picture\">\n      <div>\n        <b>{{selectedMedia.user.username}}</b>\n        <br>\n        <small>{{selectedMedia.user.full_name}}</small>\n        <p>{{selectedMedia.caption}}</p>\n      </div>\n    </div>\n  </div>\n  <div class=\"venturus-signature\"></div>\n  <!-- <div class=\"settings\">\n    <a (click)=\"toggleSettings\">Configurações</a>\n    <div class=\"dropdown-settings\">\n      <form #f>\n        <input type=\"text\" [(ngModel)]=\"tag\" placeholder=\"Hashtag\">\n      </form>   \n    </div>\n  </div> -->\n</div>\n"
+module.exports = "<div class=\"container\">\n  <div class=\"instagram-signature\">#{{tag}}</div>\n  <div *ngIf=\"selectedMedia\" class=\"content-wrapper\">\n    <img [src]=\"selectedMedia.node.display_url\" alt=\"Imagem do instagram\" class=\"media-img\" [ngClass]=\"{'slit-in-vertical' : inAnimation, 'rotate-out-2-cw' : outAnimation}\">\n    <div *ngIf=\"selectedMedia.user\" class=\"caption\" [ngClass]=\"{'fade-in-right' : inAnimation}\">\n      <img src=\"{{selectedMedia.user.profile_pic_url}}\" alt=\"Profile Picture\">\n      <div>\n        <b>{{selectedMedia.user.username}}</b>\n        <br>\n        <small>{{selectedMedia.user.full_name}}</small>\n        <p>{{selectedMedia.node.edge_media_to_caption.edges[0].node.text}}</p>\n      </div>\n    </div>\n  </div>\n  <div class=\"venturus-signature\"></div>\n  <!-- <div class=\"settings\">\n    <a (click)=\"toggleSettings\">Configurações</a>\n    <div class=\"dropdown-settings\">\n      <form #f>\n        <input type=\"text\" [(ngModel)]=\"tag\" placeholder=\"Hashtag\">\n      </form>   \n    </div>\n  </div> -->\n</div>\n"
 
 /***/ }),
 
@@ -313,7 +313,7 @@ var MainComponent = (function () {
         setTimeout(function () {
             _this._mediaIndex = _this._mediaIndex === (_this._mediaItems.length - 1) ? 0 : _this._mediaIndex + 1;
             _this.selectedMedia = _this._mediaItems[_this._mediaIndex];
-        }, 500); // Wait for out transition complete to load other image
+        }, 450); // Wait for out transition complete to load other image
         setTimeout(function () {
             _this.animate('in');
         }, 500); // Wait for in transition complete to load other image
@@ -438,9 +438,10 @@ var ConnectionService = (function () {
         var url = "https://www.instagram.com/explore/tags/" + tag + "/";
         return this._http.get(url, { headers: header, responseType: __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* ResponseContentType */].Text })
             .map(function (data) {
-            var posts = JSON.parse(data['_body'].split('"media": ')[1].split(', "top_posts": ')[0]).nodes;
+            var posts = JSON.parse(data['_body'].split('_sharedData = ')[1].split(';</script>')[0])['entry_data']['TagPage'][0]['graphql']['hashtag']['edge_hashtag_to_media']['edges'];
+            console.log(posts);
             posts.forEach(function (post) {
-                _this.getUserByPostCode(post.code).subscribe(function (user) { return post['user'] = user; });
+                _this.getUserByPostCode(post['node']['shortcode']).subscribe(function (user) { return post['user'] = user; });
             });
             return posts;
         });
@@ -451,9 +452,9 @@ var ConnectionService = (function () {
         var url = "https://www.instagram.com/explore/locations/" + location + "/";
         return this._http.get(url, { headers: header, responseType: __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* ResponseContentType */].Text })
             .map(function (data) {
-            var posts = JSON.parse(data['_body'].split('"media": ')[1].split(', "top_posts": ')[0]).nodes;
+            var posts = JSON.parse(data['_body'].split('_sharedData = ')[1].split(';</script>')[0])['entry_data']['TagPage'][0]['graphql']['hashtag']['edge_hashtag_to_media']['edges'];
             posts.forEach(function (post) {
-                _this.getUserByPostCode(post.code).subscribe(function (user) { return post['user'] = user; });
+                _this.getUserByPostCode(post['node']['shortcode']).subscribe(function (user) { return post['user'] = user; });
             });
             return posts;
         });
