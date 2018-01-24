@@ -37,10 +37,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 var routes = [
-    { path: 'main', component: __WEBPACK_IMPORTED_MODULE_3__main_main_component__["a" /* MainComponent */] },
+    { path: ':hashtag', component: __WEBPACK_IMPORTED_MODULE_3__main_main_component__["a" /* MainComponent */] },
+    { path: '', component: __WEBPACK_IMPORTED_MODULE_3__main_main_component__["a" /* MainComponent */] },
     { path: 'token', component: __WEBPACK_IMPORTED_MODULE_2__token_token_component__["a" /* TokenComponent */] },
-    { path: '', redirectTo: '/main', pathMatch: 'full' },
-    { path: '**', redirectTo: '/main', pathMatch: 'full' },
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {
@@ -272,8 +271,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var MainComponent = (function () {
-    function MainComponent(_connection, _router) {
+    function MainComponent(_connection, _route, _router) {
         this._connection = _connection;
+        this._route = _route;
         this._router = _router;
         this._mediaItems = [];
         this._mediaIndex = 0;
@@ -286,12 +286,15 @@ var MainComponent = (function () {
     }
     MainComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.setConfig();
-        this.getMediaItems(this.config['tag']);
-        this.config.mediaItemsInterval = setInterval(function () {
+        this._route.params.subscribe(function (params) {
+            _this.config['tag'] = params['hashtag'] || 'venturus';
+            _this.setConfig();
             _this.getMediaItems(_this.config['tag']);
-        }, (this.config['refreshMinutes'] * 60000));
-        this.config.switchMediaInteral = setInterval(this.switchMedia.bind(this), (this.config['durationSeconds'] * 1000));
+            _this.config.mediaItemsInterval = setInterval(function () {
+                _this.getMediaItems(_this.config['tag']);
+            }, (_this.config['refreshMinutes'] * 60000));
+            _this.config.switchMediaInteral = setInterval(_this.switchMedia.bind(_this), (_this.config['durationSeconds'] * 1000));
+        });
     };
     MainComponent.prototype.checkAuthorization = function () {
         this._connection.getToken();
@@ -342,12 +345,11 @@ var MainComponent = (function () {
     MainComponent.prototype.setNewConfig = function () {
         clearInterval(this.config.switchMediaInteral);
         clearInterval(this.config.mediaItemsInterval);
-        localStorage['tag'] = this.newConfig.tag;
         localStorage['durationSeconds'] = this.newConfig.durationSeconds;
         localStorage['refreshMinutes'] = this.newConfig.refreshMinutes;
         this.config = this.newConfig;
-        this.ngOnInit();
         this.toggleSettings();
+        this._router.navigate(['', this.newConfig.tag]);
     };
     MainComponent.prototype.toggleSettings = function () {
         var _this = this;
@@ -359,7 +361,6 @@ var MainComponent = (function () {
         }
     };
     MainComponent.prototype.setConfig = function () {
-        this.config['tag'] = localStorage['tag'] || 'boracurtirvnt';
         this.config['durationSeconds'] = localStorage['durationSeconds'] || 5;
         this.config['refreshMinutes'] = localStorage['refreshMinutes'] || 5;
         this.newConfig = Object.assign({}, this.config);
@@ -371,10 +372,10 @@ MainComponent = __decorate([
         selector: 'app-main',
         template: __webpack_require__("../../../../../src/app/main/main.component.html"),
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_connection_service__["a" /* ConnectionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_connection_service__["a" /* ConnectionService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_connection_service__["a" /* ConnectionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_connection_service__["a" /* ConnectionService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _c || Object])
 ], MainComponent);
 
-var _a, _b;
+var _a, _b, _c;
 //# sourceMappingURL=main.component.js.map
 
 /***/ }),
