@@ -246,7 +246,7 @@ AppModule = __decorate([
 /***/ "../../../../../src/app/main/main.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div class=\"instagram-signature\">#{{config.tag}}</div>\n  <div *ngIf=\"selectedMedia\" class=\"content-wrapper\">\n    <img [src]=\"selectedMedia.node.display_url\" alt=\"Imagem do instagram\" class=\"media-img\" [ngClass]=\"{'slit-in-vertical' : inAnimation, 'rotate-out-2-cw' : outAnimation}\">\n    <div *ngIf=\"selectedMedia.user\" class=\"caption\" [ngClass]=\"{'fade-in-right' : inAnimation}\">\n      <img src=\"{{selectedMedia.user.profile_pic_url}}\" alt=\"Profile Picture\">\n      <div>\n        <b>{{selectedMedia.user.username}}</b>\n        <br>\n        <small>{{selectedMedia.user.full_name}}</small>\n        <p>{{selectedMedia.node.edge_media_to_caption.edges[0].node.text}}</p>\n      </div>\n    </div>\n  </div>\n  <div class=\"venturus-signature\"></div>\n  <div class=\"settings\">\n    <a (click)=\"toggleSettings()\"><img src=\"assets/img/fa-cog.png\" alt=\"Config\" style=\"color: rgba(0,0,0,0.5)\"></a>\n    <div *ngIf=\"displaySettings\" class=\"dropdown-settings\">\n      <form #form=\"ngForm\" (ngSubmit)=\"setNewConfig()\">\n\n        <label>Hashtag</label>\n        <input type=\"text\" [(ngModel)]=\"newConfig.tag\" name=\"tag\" placeholder=\"Hashtag\" required>\n\n        <label>Duration seconds</label>\n        <input type=\"number\" [(ngModel)]=\"newConfig.durationSeconds\" name=\"duration\" placeholder=\"Duration time\" required>\n\n        <label>Refresh minutes</label>\n        <input type=\"number\" [(ngModel)]=\"newConfig.refreshMinutes\" name=\"refresh\" placeholder=\"Refresh time\" required>\n        \n        <button type=\"submit\" [disabled]=\"!form.form.valid\">Save</button>\n      </form>   \n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"container\">\n  <div class=\"instagram-signature\">#{{config.tag}}</div>\n  <div *ngIf=\"selectedMedia\" class=\"content-wrapper\">\n    <img [src]=\"selectedMedia.node.display_url\" alt=\"Imagem do instagram\" class=\"media-img\" [ngClass]=\"{'slit-in-vertical' : inAnimation, 'rotate-out-2-cw' : outAnimation}\">\n    <div *ngIf=\"selectedMedia.user\" class=\"caption\" [ngClass]=\"{'fade-in-right' : inAnimation}\">\n      <img src=\"{{selectedMedia.user.profile_pic_url}}\" alt=\"Profile Picture\">\n      <div>\n        <b>@{{selectedMedia.user.username}}</b>\n        <br>\n        <small>{{selectedMedia.user.full_name}}</small>\n        <p>{{selectedMedia.node.edge_media_to_caption.edges[0].node.text}}</p>\n      </div>\n    </div>\n  </div>\n  <div class=\"venturus-signature\"></div>\n  <div class=\"settings\">\n    <a (click)=\"toggleSettings()\"><img src=\"assets/img/fa-cog.png\" alt=\"Config\" style=\"color: rgba(0,0,0,0.5)\"></a>\n    <div *ngIf=\"displaySettings\" class=\"dropdown-settings\">\n      <form #form=\"ngForm\" (ngSubmit)=\"setNewConfig()\">\n\n        <label>Hashtag</label>\n        <input type=\"text\" [(ngModel)]=\"newConfig.tag\" name=\"tag\" placeholder=\"Hashtag\" required>\n\n        <label>Duration seconds</label>\n        <input type=\"number\" [(ngModel)]=\"newConfig.durationSeconds\" name=\"duration\" placeholder=\"Duration time\" required>\n\n        <label>Refresh minutes</label>\n        <input type=\"number\" [(ngModel)]=\"newConfig.refreshMinutes\" name=\"refresh\" placeholder=\"Refresh time\" required>\n        \n        <button type=\"submit\" [disabled]=\"!form.form.valid\">Save</button>\n      </form>   \n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -494,10 +494,14 @@ var ConnectionService = (function () {
     ConnectionService.prototype.getUserByPostCode = function (postCode) {
         var header = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
         var url = "https://www.instagram.com/p/" + postCode + "/";
+        var user = {};
         return this._http.get(url, { headers: header, responseType: __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* ResponseContentType */].Text })
             .map(function (data) {
-            var allUser = data['_body'].split(', "owner": ');
-            return JSON.parse(allUser[allUser.length - 1].split(', "is_ad": ')[0]);
+            var owner_id = data['_body'].split('<meta property="instapp:owner_user_id" content="')[1].split('" />')[0];
+            user['profile_pic_url'] = data['_body'].split('{"id":"' + owner_id + '","profile_pic_url":"')[1].split('","username":"')[0];
+            user['username'] = data['_body'].split('(@')[1].split(') on Instagram')[0];
+            user['full_name'] = data['_body'].split('<meta property="og:title" content="')[1].split(' on Instagram:')[0];
+            return user;
         });
     };
     return ConnectionService;
